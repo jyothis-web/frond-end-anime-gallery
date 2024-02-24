@@ -1,0 +1,17 @@
+#normalbtn{
+    color:white ;
+    font-size: 17px;
+}
+
+#navbtn{
+    width: 80px;
+    height: 30px;
+    background-color: #fffa3e;
+    color:black;
+    font-size: 17px;
+    border-radius: 14px;
+    border: 1px solid white;
+}
+.linkfont{
+    text-decoration: none;  
+}

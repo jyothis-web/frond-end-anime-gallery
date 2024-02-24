@@ -1,0 +1,47 @@
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.card {
+  margin-top: 1cm;
+  width: 220px;
+  position: relative;
+}
+
+.new {
+  position: absolute;
+  right: 0px;
+  top: 0cm;
+  z-index: 1;
+}
+.sale {
+  position: absolute;
+  right: 0px;
+  top: 0.7cm;
+  z-index: 1;
+}
+.rating {
+  position: absolute;
+  bottom: 1.8cm;
+  z-index: 1;
+}
+.cartimage {
+  position: relative;
+  width: 200px;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+
+
+/* wishlist */
+
+.filter-css{
+ display: flex;
+ align-items: baseline;
+ width: 160px;
+ margin-top: 10px;
+
+}
