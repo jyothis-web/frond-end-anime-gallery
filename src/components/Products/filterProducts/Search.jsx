@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { cart } from "../../Contex";
+import { movies } from "../../Contex";
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton } from "@mui/material";
 
 const Search = () => {
-  const { search, setSearch } = useContext(cart);
+  const { search, setSearch } = useContext(movies);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -34,7 +34,7 @@ const Search = () => {
         <div className="input">
           <input
            
-            placeholder="search products"
+            placeholder="search Movies"
             type="text"
             value={search.keyword}
             onChange={(e) => setSearch({ ...search, keyword: e.target.value })}

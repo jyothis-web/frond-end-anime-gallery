@@ -1,17 +1,16 @@
 import React, { useContext } from "react";
 import "./navbar.css";
-import IconButton from "@mui/material/IconButton";
 import { Avatar, Badge } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Link } from "react-router-dom";
-import SwipeableTemporaryDrawer from "../Cart/Cartslide";
-import { cart } from "../Contex";
+
 import Search from "../Products/filterProducts/Search";
 import logo from "../images/logo.png"
+import { movies } from "../Contex";
 
 
 const UserNavbar = () => {
-  const { cartitem, wishlist } = useContext(cart);
+  const {wishlist } = useContext(movies);
   return (
     <div style={{ position: "fixed", top: "0", width: "100%", zIndex: "10" }}>
       <div className="nav">
@@ -19,6 +18,8 @@ const UserNavbar = () => {
           {/* <h5>you first order is free</h5> */}
           <img src={logo} alt="" width={"200px"} />
         </div>
+        <div>Home</div>
+      
        <Search/>
        
         <div className="hotline">HOTLINE: 1-900-9999</div>
@@ -41,7 +42,7 @@ const UserNavbar = () => {
             </p>
           </Link>
 
-          <p style={{ paddingBottom: "9px" }}>
+          {/* <p style={{ paddingBottom: "9px" }}>
             <Badge
               style={{ marginRight: "15px", marginTop: "10px" }}
               badgeContent={cartitem.length === 0 ? "0" : cartitem.length}
@@ -53,7 +54,7 @@ const UserNavbar = () => {
                 <SwipeableTemporaryDrawer />
               </IconButton>
             </Badge>
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

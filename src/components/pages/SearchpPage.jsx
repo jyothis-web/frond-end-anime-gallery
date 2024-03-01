@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import IconButton from "@mui/material/IconButton";
 import SyncIcon from "@mui/icons-material/Sync";
-import { cart } from "../Contex";
+import { movies } from "../Contex";
 import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import { Typography } from "antd";
 import { Button, Rating } from "@mui/material";
@@ -17,7 +17,7 @@ const SearchPage = () => {
     wishlist,
     WishlistcartitemRemove,
     search,
-  } = useContext(cart);
+  } = useContext(movies);
   const Cartbtn = styled(Button)({
     width: "90px",
     fontSize: "10px",

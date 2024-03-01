@@ -6,6 +6,8 @@ button {
 
 .card {
   margin-top: 1cm;
+  margin-bottom: 1cm;
+   margin-left: 20px; 
   width: 220px;
   position: relative;
 }
@@ -45,3 +47,4 @@ button {
  margin-top: 10px;
 
 }
+

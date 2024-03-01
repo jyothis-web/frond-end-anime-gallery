@@ -1,11 +1,11 @@
 import { Button } from "@mui/material";
 import React, { useContext } from "react";
-import { cart } from "../../Contex";
+import { movies} from "../../Contex";
 import { Link, useNavigate } from "react-router-dom";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-  const { auth, setAuth } = useContext(cart);
+  const { auth, setAuth } = useContext(movies);
 
   const Handlelogout = () => {
     //console.log(localStorage.getItem("auth"));
@@ -27,10 +27,9 @@ const AdminDashboard = () => {
         <h1>Admin Dashboard</h1>
         <div style={{display:"flex",flexDirection:"column",gap:"20px",}}>
       {auth.user?.name ? `Welcome ${auth.user.name}` : ""}
-      <Link to="/Catergory"><Button variant="contained">create category</Button></Link>
-      <Link to="/CategoryWithProducts"><Button variant="contained">view category</Button></Link>
-      <Link to="/CreateProduct"><Button variant="contained">create products</Button></Link>
-      <Link to="/Product"><Button variant="contained">view products</Button></Link>
+      <Link to="/Catergory"><Button variant="contained">movie category</Button></Link>
+      <Link to="/CreateMovie"><Button variant="contained">create movies</Button></Link>
+      <Link to="/movies"><Button variant="contained">view movies</Button></Link>
       <Button  variant="contained" sx={{maxWidth:"80px"}} onClick={Handlelogout}>Logout</Button>
       </div>
       

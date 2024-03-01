@@ -5,7 +5,7 @@ import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined
 import List from "@mui/material/List";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import IconButton from "@mui/material/IconButton";
-import { cart } from "../Contex";
+import { movies } from "../Contex";
 import { Divider, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CloseIcon from "@mui/icons-material/Close";
@@ -23,7 +23,7 @@ export default function SwipeableTemporaryDrawer() {
       handleremoveproduct,
       setCartitem,
       auth
-    } = useContext(cart);
+    } = useContext(movies);
   const [state, setState] = React.useState({
     right: false,
   });

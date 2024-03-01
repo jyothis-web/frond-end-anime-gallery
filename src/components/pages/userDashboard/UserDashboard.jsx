@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import { cart } from "../../Contex";
+import { movies} from "../../Contex";
 import { Link, useNavigate } from "react-router-dom";
 import UserNavbar from "../../Header/UserNavbar";
 
 const UserDashboard = () => {
   const navigate = useNavigate();
-  const { auth, setAuth } = useContext(cart);
+  const { auth, setAuth } = useContext(movies);
   useEffect(() => {
     // Set initial auth state when component mounts
     const storedAuth = localStorage.getItem('auth');

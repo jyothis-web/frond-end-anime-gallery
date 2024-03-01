@@ -5,44 +5,38 @@ import "./navbar.css";
 //import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Link } from "react-router-dom";
 //import SwipeableTemporaryDrawer from "../Cart/Cartslide";
-//import { cart } from "../Contex";
+
 //import { Button } from "antd";
 //import axios from "axios";
 import Search from "../Products/filterProducts/Search";
-import logo from "../images/logo.png"
+import logo from "../images/movie logo.png";
+import Headroom from "react-headroom";
 
 const Navbar = ({ handleSearch }) => {
- // const { cartitem, wishlist } = useContext(cart);
-
-
+  // const { cartitem, wishlist } = useContext(cart);
 
   return (
-    <div style={{ position: "fixed", top: "0", width: "100%", zIndex: "10" }}>
+    <>
+    <Headroom>
       <div className="nav">
         <div className="logo" style={{ marginLeft: "1cm" }}>
-          {/* <h5>you first order is free</h5> */}
-          <img src={logo} alt="" width={"200px"} />
+          <img src={logo} alt=""height={"50px"} style={{borderRadius:"12px"}}/>
         </div>
-       <Search/>
-       
+        <div>Home</div>
+        <div>Services</div>
+        <div>Contact Us</div>
+        <Search />
         <div className="right-nav">
-          <Link to="/UserLogin">
-            {" "}
-            <button id="navbtn" className="signin">
-              Login
-            </button>
-          </Link>
           <Link to="/UserRegister">
             <button id="navbtn" className="Register">
-              Register
+              Sign In
             </button>
           </Link>
-
-         
+          <div>filter</div>
         </div>
       </div>
-      
-    </div>
+    </Headroom>
+    </>
   );
 };
 

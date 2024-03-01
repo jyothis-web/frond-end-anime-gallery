@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react";
 
-export const cart = createContext();
+export const movies = createContext();
 const Contex = ({ children }) => {
   const [cartitem, setCartitem] = useState([]);
   const [wishlist, setWishlist] = useState([]);
@@ -35,81 +35,9 @@ const Contex = ({ children }) => {
     }
   }, []);
 
-  const handleaddproduct = (product) => {
-    setCartitem((prevCart) => {
-      // Check if user is authenticated and has a user ID
-      const userId = auth.user ? auth.user._id : null;
-      console.log(userId);
-      // Get the existing cart data from localStorage
-      const storedCart = localStorage.getItem(`cart_${userId}`);
+  
 
-      // Parse the existing cart data
-      const existingCart = storedCart ? JSON.parse(storedCart) : [];
-
-      // Find the product in the existing cart
-      const productIndex = existingCart.findIndex(
-        (item) => String(item._id) === String(product._id)
-      );
-
-      console.log("Product._id:", product._id);
-      console.log("Product:", product);
-      console.log("Existing cart before update:", existingCart);
-
-      // If the product is already in the cart, update its quantity
-      if (productIndex !== -1) {
-        const updatedCart = [...existingCart];
-        updatedCart[productIndex].quantity += 1;
-
-        // Save the updated cart to localStorage
-        localStorage.setItem(`cart_${userId}`, JSON.stringify(updatedCart));
-
-        return updatedCart;
-      } else {
-        // If the product is not in the cart, add it with quantity 1
-        const newProduct = { ...product, quantity: 1 };
-        const updatedCart = [...existingCart, newProduct];
-
-        // Save the updated cart to localStorage
-        localStorage.setItem(`cart_${userId}`, JSON.stringify(updatedCart));
-
-        return updatedCart;
-      }
-    });
-  };
-
-  //to add product to cart
-  // const handleaddproduct = (product) => {
-  //   setCartitem((prevCart) => {
-  //     const productIndex = prevCart.findIndex(
-  //       (item) => String(item._id) === String(product._id)
-  //     );
-
-  //     console.log('Product._id:', product._id);
-  //     console.log('Product:', product);
-  //     console.log('prevCart before update:', prevCart);
-
-  //     // If the product is already in the cart, update its quantity
-  //     if (productIndex !== -1) {
-  //       const updatedCart = [...prevCart];
-  //       updatedCart[productIndex].quantity += 1;
-
-  //       // Save to localStorage
-  //       localStorage.setItem('cart', JSON.stringify(updatedCart));
-
-  //       return updatedCart;
-  //     } else {
-  //       // If the product is not in the cart, add it with quantity 1
-  //       const newProduct = { ...product, quantity: 1 };
-  //       const updatedCart = [...prevCart, newProduct];
-
-  //       // Save to localStorage
-  //       localStorage.setItem('cart', JSON.stringify(updatedCart));
-
-  //       return updatedCart;
-  //     }
-  //   });
-  // };
-
+  
   //to add product to wishlist
   const wishlistaddproduct = (product) => {
     setWishlist((prevWishlist) => {
@@ -152,34 +80,6 @@ const Contex = ({ children }) => {
     });
   };
 
-  //to remove all product from cart
-  const handleremoveproduct = (product) => {
-    const productExist = cartitem.find((item) => item.id === product.id);
-    if (productExist.quantity === 1) {
-      setCartitem(cartitem.filter((item) => item.id !== product.id));
-    } else {
-      setCartitem(
-        cartitem.map((item) =>
-          item.id === product.id
-            ? { ...productExist, quantity: productExist.quantity - 1 }
-            : item
-        )
-      );
-    }
-  };
-
-  //remove single product from cart
-  const SingleProductRemove = (product) => {
-    const productIndex = cartitem.findIndex((item) => item.id === product.id);
-    const userId = auth.user ? auth.user._id : null;
-    console.log(userId);
-    if (productIndex !== -1) {
-      const updatedCart = [...cartitem];
-      updatedCart.splice(productIndex, 1);
-      setCartitem(updatedCart);
-      localStorage.setItem(`cart_${userId}`, JSON.stringify(updatedCart));
-    }
-  };
 
   //remove single product from cart
   const WishlistProductRemove = (product) => {
@@ -214,11 +114,7 @@ const Contex = ({ children }) => {
       });
     };
     
-  //to change the cart button when its clicked
 
-  const isProductInCart = (productId) => {
-    return cartitem.some((product) => product._id === productId);
-  };
 
   const WishlistcartitemRemove = (product) => {
     const userId = auth.user ? auth.user._id : null;
@@ -255,12 +151,13 @@ const Contex = ({ children }) => {
   };
 
   //for products
-  const getProducts = async () => {
+  const getMovies = async () => {
     try {
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/admin/product/get-product`
+        `${process.env.REACT_APP_BASE_URL}/admin/get-Movie`
       );
-      setProducts(response.data.products);
+      setProducts(response.data.movies);
+      // console.log("product",products);
     } catch (error) {
       console.log(error);
     }
@@ -268,7 +165,7 @@ const Contex = ({ children }) => {
 
   return (
     <div>
-      <cart.Provider
+      <movies.Provider
         value={{
           cartitem,
           wishlist,
@@ -277,12 +174,8 @@ const Contex = ({ children }) => {
           setCartitem,
           setWishlist,
           setProducts,
-          getProducts,
+         getMovies,
           setAuth,
-          handleaddproduct,
-          isProductInCart,
-          SingleProductRemove,
-          handleremoveproduct,
           wishlistaddproduct,
           WishlistProductRemove,
           WishlistcartitemRemove,
@@ -294,7 +187,7 @@ const Contex = ({ children }) => {
         }}
       >
         {children}
-      </cart.Provider>
+      </movies.Provider>
     </div>
   );
 };

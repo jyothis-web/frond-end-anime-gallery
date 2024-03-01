@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Typography, styled, Button, Box } from "@mui/material";
 import "../Products/products.css";
 import { useContext } from "react";
-import { cart } from "../Contex";
+import { movies} from "../Contex";
 import SyncIcon from "@mui/icons-material/Sync";
 
 const Cartbtn = styled(Button)({
@@ -22,7 +22,7 @@ const Wishlist = () => {
     WishlistProductRemove,
     isProductInCart,
     auth
-  } = useContext(cart);
+  } = useContext(movies);
 
   useEffect(() => {
     const userId = auth.user ? auth.user._id : null;

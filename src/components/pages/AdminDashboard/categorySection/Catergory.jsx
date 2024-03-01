@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { cart } from "../../../Contex";
+import { movies } from "../../../Contex";
 import {
   Button,
   Paper,
@@ -17,11 +17,11 @@ import toast from "react-hot-toast";
 import EditAlertDialog from "./EditCategoryDailog";
 import { Link } from "react-router-dom";
 
-const Catergory = ({ category }) => {
+const Catergory = () => {
   //const [categories, setCategories] = useState([]);
   const [name, setName] = useState([]);
-
-  const { categories, getCategories } = useContext(cart);
+  const [category, setCategory] = useState([]);
+  const { categories, getCategories } = useContext(movies);
   // console.log(localStorage.getItem("auth"));
   const authString = localStorage.getItem("auth");
   // Parse the JSON string to an object
@@ -29,12 +29,12 @@ const Catergory = ({ category }) => {
   // Access the token property
   const token = auth.token;
 
-
-
   useEffect(() => {
     getCategories();
-  },);
-
+    getallCategories();
+      // eslint-disable-next-line
+  },[]);
+console.log(category);
   //for create new category
   const handlenewSubmit = async (e) => {
     e.preventDefault();
@@ -54,6 +54,7 @@ const Catergory = ({ category }) => {
       toast.success(`${response.data.category.name} is created`);
     } catch (error) {
       console.log(error);
+      toast.error(error.message);
     }
   };
   //for delete category
@@ -80,6 +81,31 @@ const Catergory = ({ category }) => {
       toast.error("Error deleting category");
     }
   };
+  //for get all categories
+  const getallCategories = async () => {
+    try {
+      const authString = localStorage.getItem("auth");
+      const auth = JSON.parse(authString);
+      const token = auth.token;
+      console.log("token",token);
+
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/admin/get-category`,
+        // {
+        //   headers: {
+        //     Authorization: `${token}`,
+        //   },
+        // }
+      );
+
+      if (response.data.success) {
+        setCategory(response.data.categories);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   return (
     <div style={{ display: "flex" }}>

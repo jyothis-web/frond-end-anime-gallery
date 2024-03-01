@@ -8,11 +8,6 @@ button {
   cursor: pointer;
 }
 
-.card {
-  margin-top: 1cm;
-  width: 220px;
-  position: relative;
-}
 
 .new {
   position: absolute;

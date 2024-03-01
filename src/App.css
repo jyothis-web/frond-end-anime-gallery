@@ -6,12 +6,19 @@
 #navbtn{
     width: 80px;
     height: 30px;
-    background-color: #fffa3e;
-    color:black;
+    background-color: red;
+    color:white;
     font-size: 17px;
     border-radius: 14px;
     border: 1px solid white;
 }
 .linkfont{
     text-decoration: none;  
+}
+.backgroundimg{
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../src/components/images/movie.jpg");
+    /* background-image: url("../src/components/images/movie.jpg"); */
+    background-size: cover; /* Adjust the background size based on your preferences */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */ /* Adjust the opacity (a value between 0 and 1) */
 }

@@ -11,13 +11,14 @@ import AdminLogin from "./components/Admin/AdminLogin/AdminLogin";
 import AdminDashboard from "./components/pages/AdminDashboard/AdminDashborad";
 import Catergory from "./components/pages/AdminDashboard/categorySection/Catergory";
 import { Toaster } from "react-hot-toast";
-import Product from "./components/pages/AdminDashboard/ProductSection/Product";
-import CreateProduct from "./components/pages/AdminDashboard/ProductSection/CreateProduct";
-import UpdateProduct from "./components/pages/AdminDashboard/ProductSection/UpdateProduct";
-import CategoryWithProducts from "./components/pages/AdminDashboard/categorySection/CategoryWithProducts";
 import Search from "./components/Products/filterProducts/Search";
 import SearchPage from "./components/pages/SearchpPage";
-import ProductDescription from "./components/pages/ProductDescription";
+import MovieSlider from "./components/Products/movies-slider/MovieSlider";
+import NewMovies from "./components/MovieCategory/NewMovies/NewMovies";
+import CreateMovie from "./components/pages/AdminDashboard/ProductSection/CreateMovie";
+import UpdateMovie from "./components/pages/AdminDashboard/ProductSection/UpdateMovie";
+import Movies from "./components/pages/AdminDashboard/ProductSection/movies";
+import MovieDescription from "./components/pages/MovieDescription";
 function App() {
   return (
     <div className="App">
@@ -41,19 +42,18 @@ function App() {
         <Route path="/Wishlist" element={<Wishlist />} />
         <Route path="/UserDashboard" element={<UserDashboard />} />
         <Route path="/Catergory" element={<Catergory />} />
-        <Route path="/Product" element={<Product />} />
+        <Route path="/Movies" element={<Movies />} />
+        <Route path="/MovieSlider" element={<MovieSlider />} />
+        <Route path="/NewMovies" element={<NewMovies />} />
         <Route
-          path={`/ProductDescription/:id`}
-          element={<ProductDescription />}
+          path={`/MovieDescription/:id`}
+          element={<MovieDescription />}
         />
-        <Route path="/CreateProduct" element={<CreateProduct />} />
+        <Route path="/CreateMovie" element={<CreateMovie />} />
+        
         <Route
-          path="/CategoryWithProducts"
-          element={<CategoryWithProducts />}
-        />
-        <Route
-          path={`/UpdateProduct/:productId/:productName`}
-          element={<UpdateProduct />}
+          path={`/UpdateMovie/:movieId/:productName`}
+          element={<UpdateMovie />}
         />
       </Routes>
       {/* <SwipeableTemporaryDrawer/> */}

@@ -1,16 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.512125d4.css",
-    "main.js": "/static/js/main.2d1ef251.js",
+    "main.css": "/static/css/main.39145fca.css",
+    "main.js": "/static/js/main.b521d067.js",
     "static/js/787.658bc779.chunk.js": "/static/js/787.658bc779.chunk.js",
+    "static/media/falimy poster.webp": "/static/media/falimy poster.6e002161602a06444c7e.webp",
+    "static/media/garudan-movie poster.jpg": "/static/media/garudan-movie poster.2002b9d3384d81f6731d.jpg",
+    "static/media/malaikotai poster.webp": "/static/media/malaikotai poster.a6bcb8bb72252e638546.webp",
+    "static/media/movie.jpg": "/static/media/movie.13ebbd5a39e9c0fb97af.jpg",
+    "static/media/movie logo.png": "/static/media/movie logo.8943596d77a5fd4988fd.png",
     "static/media/logo.png": "/static/media/logo.be449b3926a261b261ef.png",
+    "static/media/slick.svg": "/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
-    "main.512125d4.css.map": "/static/css/main.512125d4.css.map",
-    "main.2d1ef251.js.map": "/static/js/main.2d1ef251.js.map",
+    "main.39145fca.css.map": "/static/css/main.39145fca.css.map",
+    "main.b521d067.js.map": "/static/js/main.b521d067.js.map",
     "787.658bc779.chunk.js.map": "/static/js/787.658bc779.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.512125d4.css",
-    "static/js/main.2d1ef251.js"
+    "static/css/main.39145fca.css",
+    "static/js/main.b521d067.js"
   ]
 }

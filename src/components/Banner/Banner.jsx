@@ -1,12 +1,13 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import banner1 from "../images/banner1.png"
-import banner2 from "../images/banner2.png"
+import banner1 from "../images/malaikotai poster.webp"
+import banner2 from "../images/falimy poster.webp"
+import banner3 from "../images/garudan-movie poster.jpg"
 
 const Banner = () => {
 
-    const images = [banner1, banner2];
+    const images = [banner1, banner2,banner3];
     
     const settings = {
       autoplay: true,
@@ -24,11 +25,11 @@ const Banner = () => {
     };
     
   return (
-    <div style={{ width: '100%', overflow: 'hidden',marginTop:"60px",backgroundColor:"skyblue" }}>
-         <Slider {...settings} style={{ width: '100%', overflow: 'hidden' }}>
+    <div style={{ width: '100%',marginTop:"10px" }}>
+         <Slider {...settings} style={{ width: '100%', }}>
       {images.map((image, index) => (
-        <div key={index}>
-          <img src={image} style={{width:"100%",objectFit:"contain",height:"500px"}} alt={`slide-${index}`} />
+        <div key={index} >
+          <img src={image}style={{width:"100%",height:"450px",objectFit:"cover",overflow:"hidden"}}alt={`slide-${index}`} />
         </div>
       ))}
     </Slider>

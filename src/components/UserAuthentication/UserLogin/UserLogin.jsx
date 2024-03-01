@@ -4,13 +4,13 @@ import "../UserLogin/UserLogin.css";
 import { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-import { cart } from "../../Contex";
+import { movies } from "../../Contex";
 
 const UserLogin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { auth, setAuth } = useContext(cart);
+  const { auth, setAuth } = useContext(movies);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
