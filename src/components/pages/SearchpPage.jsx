@@ -21,6 +21,7 @@ const SearchPage = () => {
             display: "flex",
             justifyContent: "space-evenly",
             gap: ".3cm",
+            flexWrap:"wrap",
             paddingBottom: "2cm",
             paddingRight: "4px",
             position: "relative",

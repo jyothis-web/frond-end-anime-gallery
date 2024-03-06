@@ -7,6 +7,7 @@ import Footer from "../../Footer/Footer";
 
 const MoviesByCategory = () => {
   const { categoryId, categoryName } = useParams();
+  console.log(categoryId);
   const [categoryMovies, setcategoryMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -43,6 +44,7 @@ const MoviesByCategory = () => {
             width: "100%",
             display: "flex",
             justifyContent: "space-evenly",
+            flexWrap:"wrap",
             gap: ".3cm",
             paddingBottom: "2cm",
             paddingRight: "4px",
