@@ -41,7 +41,7 @@ const Footer = () => {
               maxWidth: "200px",
             }}
           >
-            Movie website to watch movies
+           Malayalam Movie website to watch malayalam movies
           </h5>
           <Box
             maxWidth={"150px"}
