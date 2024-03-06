@@ -4,10 +4,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import banner1 from "../images/malaikotai poster.webp"
 import banner2 from "../images/falimy poster.webp"
 import banner3 from "../images/garudan-movie poster.jpg"
+import banner4 from "../images/neymer baner.jpg"
 
 const Banner = () => {
 
-    const images = [banner1, banner2,banner3];
+    const images = [banner1, banner2,banner3,banner4];
     
     const settings = {
       autoplay: true,

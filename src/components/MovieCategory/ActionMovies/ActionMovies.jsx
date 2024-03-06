@@ -41,7 +41,7 @@ const ActionMovies = () => {
 
   const settings = {
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     infinite: true,
     slidesToScroll: 1,
     pauseOnHover: true,
