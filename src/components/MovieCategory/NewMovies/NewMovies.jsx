@@ -101,8 +101,8 @@ const NewMovies = () => {
 
   return (
     <div style={{ width: "100%", overflow: "hidden", maxHeight: "300px" }}>
-      <div
-        style={{ paddingLeft: "30px", fontSize: "18px", fontWeight: "bold" }}
+      <div className="movie distance"
+        style={{ fontSize: "18px", fontWeight: "bold" }}
       >
         Latest Movies
       </div>

@@ -32,9 +32,9 @@ const Catergory = () => {
   useEffect(() => {
     getCategories();
     getallCategories();
-      // eslint-disable-next-line
-  },[]);
-console.log(category);
+    // eslint-disable-next-line
+  }, []);
+  console.log(category);
   //for create new category
   const handlenewSubmit = async (e) => {
     e.preventDefault();
@@ -87,10 +87,10 @@ console.log(category);
       const authString = localStorage.getItem("auth");
       const auth = JSON.parse(authString);
       const token = auth.token;
-      console.log("token",token);
+      console.log("token", token);
 
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/admin/get-category`,
+        `${process.env.REACT_APP_BASE_URL}/admin/get-category`
         // {
         //   headers: {
         //     Authorization: `${token}`,
@@ -105,7 +105,6 @@ console.log(category);
       console.error(error);
     }
   };
-
 
   return (
     <div style={{ display: "flex" }}>

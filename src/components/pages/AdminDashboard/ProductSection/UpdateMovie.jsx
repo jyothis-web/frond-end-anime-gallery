@@ -25,6 +25,7 @@ const UpdateMovie = () => {
   const [description, setDescription] = useState("");
   const [movieTime, setMovieTime] = useState("");
   const [movieGenres, setMovieGenres] = useState("");
+  const [trailer, setTrailer] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
 
   // const handleChange = (event) => {
@@ -81,12 +82,14 @@ console.log(movie);
     e.preventDefault();
 
     const formData = new FormData();
+    formData.append("id", movieId)
     formData.append("name", name);
     formData.append("description", description);
     formData.append("movieTime", movieTime);
     formData.append("rating", rating);
     formData.append("year", year);
     formData.append("movieGenres", movieGenres);
+    formData.append("trailer", trailer);
     console.log(formData.append("file", image));
     selectedCategories
     .filter((categoryId) => categoryId !== undefined)
@@ -107,9 +110,9 @@ console.log(movie);
       toast.success(response.data.message);
     } catch (error) {
       console.error(error);
+      console.log(error.response.data.message);
     }
   };
- console.log("genere",movieGenres);
   return (
     <div className="edit-product">
       <h2>Edit Movie</h2>
@@ -190,10 +193,21 @@ console.log(movie);
           <label style={{ marginBottom: "25px" }}>
             Movie Name:
             <input
-              placeholder=" product name"
+              placeholder=" movie name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              style={{ width: "100%", marginBottom: "25px" }}
+            />
+          </label>
+          <br />
+          <label style={{ marginBottom: "25px" }}>
+            Movie trailer:
+            <input
+              placeholder=" movie trailer "
+              type="text"
+              value={trailer}
+              onChange={(e) => setTrailer(e.target.value)}
               style={{ width: "100%", marginBottom: "25px" }}
             />
           </label>

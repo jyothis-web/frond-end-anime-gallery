@@ -8,6 +8,7 @@ const Contex = ({ children }) => {
   const [auth, setAuth] = useState({ user: null, token: "" });
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState({
     keyword: "",
     result: [],
@@ -35,9 +36,6 @@ const Contex = ({ children }) => {
     }
   }, []);
 
-  
-
-  
   //to add product to wishlist
   const wishlistaddproduct = (product) => {
     setWishlist((prevWishlist) => {
@@ -80,41 +78,41 @@ const Contex = ({ children }) => {
     });
   };
 
-
   //remove single product from cart
   const WishlistProductRemove = (product) => {
-      setWishlist((prevWishlist) => {
-        // Check if user is authenticated and has a user ID
-        const userId = auth.user ? auth.user._id : null;
-    
-        // Get the existing wishlist data from localStorage
-        const storedWishlist = localStorage.getItem(`wishlist_${userId}`);
-    
-        // Parse the existing wishlist data
-        const existingWishlist = storedWishlist ? JSON.parse(storedWishlist) : [];
-    
-        // Find the product in the existing wishlist
-        const productIndex = existingWishlist.findIndex(
-          (item) => String(item._id) === String(product._id)
-        );
-    
-        if (productIndex !== -1) {
-          // If the product is found in the wishlist, remove it
-          const updatedWishlist = [...existingWishlist];
-          updatedWishlist.splice(productIndex, 1);
-    
-          // Save the updated wishlist to localStorage
-          localStorage.setItem(`wishlist_${userId}`, JSON.stringify(updatedWishlist));
-    
-          return updatedWishlist;
-        } else {
-          // If the product is not found in the wishlist, return the existing wishlist
-          return prevWishlist;
-        }
-      });
-    };
-    
+    setWishlist((prevWishlist) => {
+      // Check if user is authenticated and has a user ID
+      const userId = auth.user ? auth.user._id : null;
 
+      // Get the existing wishlist data from localStorage
+      const storedWishlist = localStorage.getItem(`wishlist_${userId}`);
+
+      // Parse the existing wishlist data
+      const existingWishlist = storedWishlist ? JSON.parse(storedWishlist) : [];
+
+      // Find the product in the existing wishlist
+      const productIndex = existingWishlist.findIndex(
+        (item) => String(item._id) === String(product._id)
+      );
+
+      if (productIndex !== -1) {
+        // If the product is found in the wishlist, remove it
+        const updatedWishlist = [...existingWishlist];
+        updatedWishlist.splice(productIndex, 1);
+
+        // Save the updated wishlist to localStorage
+        localStorage.setItem(
+          `wishlist_${userId}`,
+          JSON.stringify(updatedWishlist)
+        );
+
+        return updatedWishlist;
+      } else {
+        // If the product is not found in the wishlist, return the existing wishlist
+        return prevWishlist;
+      }
+    });
+  };
 
   const WishlistcartitemRemove = (product) => {
     const userId = auth.user ? auth.user._id : null;
@@ -122,7 +120,14 @@ const Contex = ({ children }) => {
       (item) => item._id !== product._id
     );
     setWishlist(WishlistRemovecartitem);
-    localStorage.setItem( `wishlist_${userId}`, JSON.stringify(WishlistRemovecartitem));
+    localStorage.setItem(
+      `wishlist_${userId}`,
+      JSON.stringify(WishlistRemovecartitem)
+    );
+  };
+  // for  short the text
+  const shortText = (text, maxLength) => {
+    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
   };
 
   //for categories
@@ -139,7 +144,8 @@ const Contex = ({ children }) => {
       );
       //   console.log(response.data);
       //   console.log(response.data.name);
-      setCategories(response.data.categories); // Assuming there's a 'categories' property in the response
+      setCategories(response.data.categories); 
+      setLoading(false);// Assuming there's a 'categories' property in the response
 
       //   if (data.success) {
       //     setCategories(data.categories); // Assuming there's a 'categories' property in the response
@@ -147,8 +153,10 @@ const Contex = ({ children }) => {
       //   }
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
+  
 
   //for products
   const getMovies = async () => {
@@ -174,7 +182,7 @@ const Contex = ({ children }) => {
           setCartitem,
           setWishlist,
           setProducts,
-         getMovies,
+          getMovies,
           setAuth,
           wishlistaddproduct,
           WishlistProductRemove,
@@ -184,6 +192,8 @@ const Contex = ({ children }) => {
           getCategories,
           search,
           setSearch,
+          loading,
+          shortText
         }}
       >
         {children}

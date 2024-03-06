@@ -1,21 +1,44 @@
-import React, { useContext } from "react";
-import { movies } from "../Contex";
 import { Typography } from "antd";
-import { Link } from "react-router-dom";
-import UserNavbar from "../Header/UserNavbar";
-import Footer from "../Footer/Footer";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import UserNavbar from "../../Header/UserNavbar";
+import Footer from "../../Footer/Footer";
 
-const SearchPage = () => {
-  const {
-    search, shortText
-  } = useContext(movies);
- 
+const MoviesByCategory = () => {
+  const { categoryId, categoryName } = useParams();
+  const [categoryMovies, setcategoryMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMoviesByCategory = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_BASE_URL}/admin/filter-movie-category/${categoryId}`
+        );
+        setcategoryMovies(response.data.movies);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching movies by category:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchMoviesByCategory();
+  }, [categoryId]);
+  const shortText = (text, maxLength) => {
+    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+  };
 
   return (
     <div className="backgroundimg">
-      <UserNavbar/>
-      <h3>Search results</h3>
-      <div
+      <UserNavbar />
+      <h1>{categoryName}</h1>
+      {loading ? (
+        <p>Loading movies...</p>
+      ) : categoryMovies.length === 0 ? (
+        <p style={{ marginTop: "200px" }}>No movies found for this category.</p>
+      ) : (
+        <div
           style={{
             width: "100%",
             display: "flex",
@@ -26,7 +49,7 @@ const SearchPage = () => {
             position: "relative",
           }}
         >
-          {search.result.map((movie) => (
+          {categoryMovies.map((movie) => (
             <div className="card" key={movie._id}>
               <div>
                 <Link to={`/MovieDescription/${movie._id}`}>
@@ -56,10 +79,10 @@ const SearchPage = () => {
             </div>
           ))}
         </div>
- 
+      )}
       <Footer />
     </div>
   );
 };
 
-export default SearchPage;
+export default MoviesByCategory;

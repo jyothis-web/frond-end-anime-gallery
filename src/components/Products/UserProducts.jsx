@@ -1,4 +1,4 @@
-import React, { useContext, useEffect,} from "react";
+import React, { useContext, useEffect } from "react";
 import "./products.css";
 import { movies } from "../Contex";
 import NewMovies from "../MovieCategory/NewMovies/NewMovies";
@@ -7,12 +7,9 @@ import ActionMovies from "../MovieCategory/ActionMovies/ActionMovies";
 
 const Products = () => {
   const {
-    //WishlistcartitemRemove,
-    getMovies,
+    // getMovies,
     getCategories,
-    auth,
   } = useContext(movies);
-  console.log("auth", auth);
   // const [checked, setChecked] = useState([]);
   // const [radio, setRadio] = useState([]);
   //for grting acategories
@@ -21,14 +18,14 @@ const Products = () => {
     // eslint-disable-next-line
   }, []);
   //for filter
-  useEffect(() => {
-    // if (checked.length || radio.length) {
-    //   filterProduct();
-    // } else {
-      getMovies();
-    // }
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   // if (checked.length || radio.length) {
+  //   //   filterProduct();
+  //   // } else {
+  //     getMovies();
+  //   // }
+  //   // eslint-disable-next-line
+  // }, []);
 
   //for check function of category
   // const handlefilter = (value, categoryId) => {
@@ -109,9 +106,17 @@ const Products = () => {
           </Button> */}
         </div>
       </div>
-      <NewMovies />
-      <ComedyMovies/>
-      <ActionMovies/>
+      <div className="movie-distance">
+        <NewMovies />
+      </div>
+      <div className="movie-distance">
+        {" "}
+        <ComedyMovies />
+      </div>
+      <div className="movie-distance">
+        {" "}
+        <ActionMovies />
+      </div>
     </div>
   );
 };

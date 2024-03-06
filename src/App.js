@@ -19,13 +19,15 @@ import CreateMovie from "./components/pages/AdminDashboard/ProductSection/Create
 import UpdateMovie from "./components/pages/AdminDashboard/ProductSection/UpdateMovie";
 import Movies from "./components/pages/AdminDashboard/ProductSection/movies";
 import MovieDescription from "./components/pages/MovieDescription";
+import CategoryButtons from "./components/MovieCategory/MovieCategoryButtons/CategoryButtons";
+import MoviesByCategory from "./components/MovieCategory/MovieCategoryButtons/MoviesByCategory";
 function App() {
   return (
     <div className="App">
       <Toaster
         containerStyle={{
           position: "absolute",
-          top: "0px",
+          top: "30px",
           left: "-60px",
         }}
       />
@@ -42,20 +44,20 @@ function App() {
         <Route path="/Wishlist" element={<Wishlist />} />
         <Route path="/UserDashboard" element={<UserDashboard />} />
         <Route path="/Catergory" element={<Catergory />} />
+        <Route path="/CategoryButtons" element={<CategoryButtons />} />
         <Route path="/Movies" element={<Movies />} />
         <Route path="/MovieSlider" element={<MovieSlider />} />
         <Route path="/NewMovies" element={<NewMovies />} />
-        <Route
-          path={`/MovieDescription/:id`}
-          element={<MovieDescription />}
-        />
+        <Route path={`/MovieDescription/:id`} element={<MovieDescription />} />
         <Route path="/CreateMovie" element={<CreateMovie />} />
-        
+
         <Route
           path={`/UpdateMovie/:movieId/:productName`}
           element={<UpdateMovie />}
         />
+           <Route path="/MoviesByCategory/:categoryId/:categoryName" element={<MoviesByCategory />} />
       </Routes>
+      
       {/* <SwipeableTemporaryDrawer/> */}
     </div>
   );

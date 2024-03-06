@@ -71,3 +71,19 @@
     /* outline: 1px solid #EC3237 ; */
  transition: color 0.3s ease, background-color 0.3s ease; 
 }
+.movie-distance{
+  padding-left: 30px;
+}
+
+@media (max-width: 480px) {
+  .slide-btn {
+    padding: 85px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    color: black;
+  }
+
+  .movie-distance{
+   padding-right: -30px;
+  }
+}
