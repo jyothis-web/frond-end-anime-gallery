@@ -8,6 +8,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
   // Paper,
   // Rating,
   // Table,
@@ -26,11 +27,14 @@ import { Link } from "react-router-dom";
 
 const Movies = () => {
   const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   //TO GET ALL PRODUCTS
   const getProducts = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/admin/get-Movie`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/admin/get-Movie`
+      );
       setProducts(response.data.movies);
     } catch (error) {
       console.log(error);
@@ -67,6 +71,14 @@ const Movies = () => {
     // eslint-disable-next-line
   }, []);
   console.log(products);
+  //to search movies
+  const filteredMovies = products.filter(
+    (product) =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.year.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div style={{ display: "flex" }}>
       <div style={{ marginLeft: "30px" }}>
@@ -89,7 +101,12 @@ const Movies = () => {
       </div>
 
       <div>
-        <h1>Movies List</h1>
+        <TextField
+          type="text"
+          placeholder="Search by movie name"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
         <TableContainer component={Paper} sx={{ width: "100%" }}>
           <Table aria-label="simple table">
             <TableHead>
@@ -105,7 +122,7 @@ const Movies = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {products.map((product) => (
+              {filteredMovies.map((product) => (
                 <TableRow key={product._id}>
                   <TableCell>{product.name}</TableCell>
                   <TableCell style={{ width: "200px !important" }}>
@@ -121,7 +138,11 @@ const Movies = () => {
                           key={index}
                           src={`${process.env.REACT_APP_BASE_URL}/${image.imagePath}`}
                           alt={`${product.name}-${index}`}
-                          style={{ width: "70px", marginRight: "10px" }}
+                          style={{
+                            width: "70px",
+                            height: "auto",
+                            marginRight: "10px",
+                          }}
                         />
                       ))}
                   </TableCell>

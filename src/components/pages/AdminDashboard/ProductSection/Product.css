@@ -8,7 +8,9 @@ button {
   cursor: pointer;
 }
 
-
+.edit-product{
+  color: black;
+}
 .new {
   position: absolute;
   right: 0px;

@@ -3,6 +3,8 @@ import axios from "axios";
 import { movies } from "../../../Contex";
 import "./Product.css";
 import {
+  Alert,
+  AlertTitle,
   Button,
   Checkbox,
   FormControl,
@@ -11,39 +13,37 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import toast from "react-hot-toast";
+//import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
 const UpdateMovie = () => {
   const { movieId, productName } = useParams();
   const { categories, getCategories } = useContext(movies);
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState(null);
+  const [video, setVideo] = useState(null);
   const [year, setYear] = useState(null);
   const [rating, setRating] = useState(null);
-  const [previewImage, setPreviewImage] = useState(null);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [movieTime, setMovieTime] = useState("");
   const [movieGenres, setMovieGenres] = useState("");
   const [trailer, setTrailer] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
 
   // const handleChange = (event) => {
   //   setSelectedCategories(event.target.value);
   // };
   //  console.log(selectedCategories);
   const handleImageChange = (e) => {
-    const selectedImage = e.target.files[0];
-    setImage(selectedImage);
-    console.log("new image", selectedImage);
+    const selectedImages = e.target.files;
+    setImages(selectedImages);
+  };
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPreviewImage(reader.result);
-    };
-    if (selectedImage) {
-      reader.readAsDataURL(selectedImage);
-    }
+
+  const handleVideoChange = (e) => {
+    const selectedVideo = e.target.files[0];
+    setVideo(selectedVideo);
   };
 
   useEffect(() => {
@@ -54,7 +54,6 @@ const UpdateMovie = () => {
         );
 
         const movie = response.data.movie;
-console.log(movie);
         setName(movie.name);
         setYear(movie.year);
         setRating(movie.rating);
@@ -73,8 +72,8 @@ console.log(movie);
     };
 
     getSingleProduct();
-  }, [movieId,]);
-  
+  }, [movieId]);
+
   useEffect(() => {
     getCategories();
   }, [getCategories]);
@@ -82,7 +81,7 @@ console.log(movie);
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("id", movieId)
+    formData.append("id", movieId);
     formData.append("name", name);
     formData.append("description", description);
     formData.append("movieTime", movieTime);
@@ -90,12 +89,19 @@ console.log(movie);
     formData.append("year", year);
     formData.append("movieGenres", movieGenres);
     formData.append("trailer", trailer);
-    console.log(formData.append("file", image));
-    selectedCategories
-    .filter((categoryId) => categoryId !== undefined)
-    .forEach((categoryId) => {
-      formData.append("categories", categoryId);
+    formData.append("video", video);
+    Array.from(images).forEach((image, index) => {
+      formData.append("image", image);
     });
+  
+    console.log("Images Array:", images);
+
+
+    selectedCategories
+      .filter((categoryId) => categoryId !== undefined)
+      .forEach((categoryId) => {
+        formData.append("categories", categoryId);
+      });
     try {
       const response = await axios.put(
         `${process.env.REACT_APP_BASE_URL}/admin/update-Movie/${movieId}`,
@@ -106,8 +112,8 @@ console.log(movie);
         console.log("Uploaded file information:", response.data.movie.image);
       }
       console.log("data", response.data);
-
-      toast.success(response.data.message);
+      setShowAlert(true);
+      // toast.success(response.data.message);
     } catch (error) {
       console.error(error);
       console.log(error.response.data.message);
@@ -168,17 +174,18 @@ console.log(movie);
             </Select>
           </FormControl>
           <br />
+
           <label style={{ marginBottom: "25px" }}>
             movie poster:
             <input
-              type="file"
-              name="image"
-              accept="image/*"
-              onChange={handleImageChange}
-              style={{ marginBottom: "25px" }}
-            />
+            type="file"
+            name="image"
+            accept="image/*"
+            onChange={handleImageChange}
+            multiple
+          />
           </label>
-          {previewImage && (
+          {/* {previewImage && (
             <div>
               <p>Preview:</p>
               <img
@@ -187,7 +194,19 @@ console.log(movie);
                 style={{ maxWidth: "100%", maxHeight: "200px" }}
               />
             </div>
-          )}
+          )} */}
+          <br />
+
+          <label>
+            Movie Video:
+            <input
+              type="file"
+              name="video"
+              accept="video/*"
+              onChange={handleVideoChange}
+              style={{ marginBottom: "25px" }}
+            />
+          </label>
           <br />
 
           <label style={{ marginBottom: "25px" }}>
@@ -278,6 +297,12 @@ console.log(movie);
             Update Movie
           </Button>
         </form>
+        {showAlert && (
+          <Alert severity="success">
+            <AlertTitle>Success</AlertTitle>
+            Movie updated
+          </Alert>
+        )}
       </div>
     </div>
   );

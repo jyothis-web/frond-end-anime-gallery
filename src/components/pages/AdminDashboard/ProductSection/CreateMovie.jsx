@@ -145,7 +145,7 @@ const CreateMovie = () => {
     }
   };
   return (
-    <div className="create-product">
+    <div className="edit-product">
       <h2>Create New Movie</h2>
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       <div style={{ marginLeft: "30px", maxWidth: "300px" }}>
@@ -201,6 +201,9 @@ const CreateMovie = () => {
             required
           />
           </label>
+          {setImages && (
+      <p>Selected Image: {setImages.name}</p>
+    )}
           {/* {previewImage && (
             <div>
               <p>Preview:</p>
@@ -221,6 +224,7 @@ const CreateMovie = () => {
             onChange={handleVideoChange}
           />
         </label>
+        <br />
           <label style={{ marginBottom: "25px" }}>
             Movie Name:
             <input
