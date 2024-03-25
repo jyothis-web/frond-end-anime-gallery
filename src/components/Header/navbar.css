@@ -17,6 +17,7 @@
   border: none;
   height: 30px;
   width: 300px;
+  margin-left: 0.3cm;
 }
 .nav2 {
   width: 100%;
@@ -84,6 +85,9 @@ display: block;
   }
   .navbar-navigation {
     display: none;
+  }
+  .logo{
+    margin-right: 20px;
   }
 }
 @media (max-width: 568px) {
