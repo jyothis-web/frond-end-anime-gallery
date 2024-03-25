@@ -36,11 +36,16 @@
 .nav .right-nav p {
   cursor: pointer;
 }
-
+.search-position{
+  position: relative;
+}
 .search-btn {
+  position: absolute;
+  top: -2px;
+  right:2px;
   height: 30px;
   width: 30px;
-  margin-left: -32px;
+  
   border-radius: 50%;
 }
 .navbar-navigation {
@@ -83,8 +88,9 @@ display: block;
 }
 @media (max-width: 568px) {
   .logo {
-    height: 35px;
+    height: 30px;
     margin-left: 0.3cm;
+    margin-top: -15px;
   }
   .input input {
     border-radius: 8px;
@@ -94,16 +100,15 @@ display: block;
     margin-left: 0.3cm;
   }
   .search-btn {
-    height: 30px;
-    width: 30px;
-    margin-top: -10px;
-    margin-left: -30px;
-    border-radius: 50%;
+  position: absolute;
+  top: -2px;
+  right:2px;
+ 
   }
 }
 @media (max-width: 328px) {
   .logo {
-    height: 30px;
+    height: 26px;
     margin-left: 0.2cm;
   }
   .input input {
@@ -114,10 +119,9 @@ display: block;
     margin-left: 0.3cm;
   }
   .search-btn {
-    height: 30px;
-    width: 30px;
-    margin-top: -10px;
-    margin-left: -30px;
-    border-radius: 50%;
+    position: absolute;
+  top: -2px;
+  right:2px;
+
   }
 }

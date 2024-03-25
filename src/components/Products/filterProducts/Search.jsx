@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { movies } from "../../Contex";
 import SearchIcon from "@mui/icons-material/Search";
@@ -10,13 +10,15 @@ const Search = () => {
   const navigate = useNavigate();
   const [noMoviesFound, setNoMoviesFound] = useState(false);
 
-  // const handleClose = (event, reason) => {
-  //   if (reason === 'clickaway') {
-  //     return;
-  //   }
+  useEffect(() => {
+    if (noMoviesFound) {
+      const timer = setTimeout(() => {
+        setNoMoviesFound(false);
+      }, 3000);
 
-  //   setOpenSnackbar(false);
-  // };
+      return () => clearTimeout(timer);
+    }
+  }, [noMoviesFound]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -49,30 +51,36 @@ const Search = () => {
   return (
     <div>
       <form onSubmit={handleSubmit} style={{ display: "flex" }}>
-        <div className="input">
-          <input
-            style={{ border: "none", outline: "none" }}
-            placeholder="search Movies"
-            type="text"
-            value={search.keyword}
-            onChange={(e) => setSearch({ ...search, keyword: e.target.value })}
-          ></input>
-        </div>
-        <div className="search-btn">
-          <IconButton type="submit">
-            <SearchIcon />
-          </IconButton>
+        <div className="search-position">
+          <div className="input">
+            <input
+              style={{ border: "none", outline: "none" }}
+              placeholder="search Movies"
+              type="text"
+              value={search.keyword}
+              onChange={(e) =>
+                setSearch({ ...search, keyword: e.target.value })
+              }
+            ></input>
+          </div>
+          <div className="search-btn">
+            <IconButton type="submit">
+              <SearchIcon />
+            </IconButton>
+          </div>
         </div>
       </form>
+
       {noMoviesFound && (
         <Alert
-          // severity="error"
+          
           variant="filled"
-          style={{ width: "100%", backgroundColor: "red", color: "white" }}
+          style={{ width: "300PX",position:"absolute",top:"100%",right:"35%", backgroundColor: "red", color: "white" }}
         >
           No movies found!
         </Alert>
       )}
+
     </div>
   );
 };

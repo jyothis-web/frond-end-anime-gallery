@@ -4,6 +4,15 @@
   border-radius: 12px;
   color: black;
 }
+.movie-card{
+width: 100%;
+display: flex;
+justify-content: space-evenly;
+gap: .3cm;
+padding-bottom:2cm ;
+padding-right: 4px;
+position: relative;
+}
 .movie-image {
   width: 150px;
   height: 200px;
@@ -71,19 +80,112 @@
     /* outline: 1px solid #EC3237 ; */
  transition: color 0.3s ease, background-color 0.3s ease; 
 }
-.movie-distance{
+/* .movie-distance{
   padding-left: 30px;
-}
+} */
 
 @media (max-width: 480px) {
+ .card{
+  /* margin-right: -20px; */
+  gap: 10px;
+  justify-content:center;
+ }
   .slide-btn {
-    padding: 85px 20px;
+    padding: 135px 10px;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 12px;
     color: black;
   }
+  .movie-image {
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+  }
 
-  .movie-distance{
-   padding-right: -30px;
+  .movie-details {
+    position: absolute;
+    width: 230px;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.7);
+   padding-left: 50px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    transition: transform 0.3s;
+  }
+  .movie-name {
+    color: white;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px; 
+  }
+  .movie-btn {
+    color: white;
+    align-items: center;
+    /* font-size: 10px; */
+    /* padding: 5px 10px; */
+    background-color: red;
+    width: 30px;
+    border-radius: 8px;
+  }
+  .card:hover .movie-details {
+    opacity: 1;
+  }
+  
+  .card:hover {
+    transform: scale(1.2);
+    transition: transform 0.3s;
+  }
+  /* .movie-distance{
+   padding-right: -10px;
+  } */
+  .movie-card{
+ 
+    display: flex;
+    justify-content:center;
+    gap: .3cm;
+  }
+}
+@media (max-width: 360px){
+  .movie-image {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+  }
+
+  .movie-details {
+    position: absolute;
+    width: 150px;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.7);
+   padding-left: 50px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    transition: transform 0.3s;
+  }
+  .slide-btn {
+    padding: 115px 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    color: white;
   }
 }

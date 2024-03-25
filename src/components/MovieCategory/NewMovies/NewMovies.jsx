@@ -100,23 +100,16 @@ const NewMovies = () => {
   };
 
   return (
-    <div style={{ width: "100%", overflow: "hidden", maxHeight: "300px" }}>
-      <div className="movie distance"
+    <div
+      style={{ width: "100%", overflow: "hidden", minHeight: "fit-content" }}
+    >
+      <div
+        className="movie distance"
         style={{ fontSize: "18px", fontWeight: "bold" }}
       >
         Latest Movies
       </div>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-evenly",
-          gap: ".3cm",
-          paddingBottom: "2cm",
-          paddingRight: "4px",
-          position: "relative",
-        }}
-      >
+      <div className="movie-card">
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -125,7 +118,7 @@ const NewMovies = () => {
               .filter((movie) => !shownMovies.includes(movie._id))
               .map((movie) => (
                 <div className="card" key={movie._id}>
-                  <div>
+                  {/* <div> */}
                     <Link to={`/MovieDescription/${movie._id}`}>
                       <div className="movie-image">
                         {movie.image && movie.image.length > 0 && (
@@ -136,7 +129,7 @@ const NewMovies = () => {
                         )}
                       </div>
                     </Link>
-                  </div>
+                  {/* </div> */}
                   <div style={{ display: "flex", flexDirection: "column" }}>
                     <div className="movie-details">
                       <Link className="linkfont" to="/MovieDescription">
@@ -155,7 +148,7 @@ const NewMovies = () => {
           style={{ position: "absolute", right: "-10px", top: "30px" }}
           onClick={handleNextMovie}
         >
-          <ArrowForwardIosIcon fontSize="30px" className="slide-btn" />
+          <ArrowForwardIosIcon fontSize="30px"  className="slide-btn" />
         </IconButton>
       </div>
     </div>

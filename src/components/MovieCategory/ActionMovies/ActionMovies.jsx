@@ -100,7 +100,7 @@ const ActionMovies = () => {
   };
 
   return (
-    <div style={{ width: "100%", overflow: "hidden", maxHeight: "300px" }}>
+    <div style={{ width: "100%", overflow: "hidden", maxHeight: "fit-content" }}>
       <div
         style={{ paddingLeft: "30px", fontSize: "18px", fontWeight: "bold" }}
       >

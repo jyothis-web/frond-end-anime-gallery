@@ -23,7 +23,16 @@ const Navbar = ({ handleSearch }) => {
         <div className="logo">
           <img src={logo} alt=""height={"50px"} style={{borderRadius:"12px"}}/>
         </div>
-        <div className="navbar-navigation">Home</div>
+        <Link className="navbar-navigation"
+            style={{
+              textDecoration: "none",
+              color: "white",
+              cursor: "pointer",
+            }}
+            to="/"
+          >
+            <div >Home</div>
+          </Link>
         <div className="navbar-navigation">Services</div>
         <div className="navbar-navigation">Contact Us</div>
         <Search />

@@ -116,7 +116,7 @@ const Footer = () => {
           paddingLeft={{ xs: "20%", sm: "0" }}
         >
           {" "}
-          <h4>Features</h4> <p>Analytics</p> <p>Engagement</p> <p>Builder</p>{" "}
+          <h4>Features</h4> <p>Movies</p>  <p>Builder</p>{" "}
           <p>Publisher</p>{" "}
         </Grid>
         <Grid

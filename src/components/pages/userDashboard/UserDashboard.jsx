@@ -34,7 +34,6 @@ const UserDashboard = () => {
        <UserNavbar/>
 <div style={{marginTop:"150px",display:"flex", gap:"50px"}}>
        {auth.user?.name ? `Welcome ${auth.user.name}` : ""}
-       <Link to="/"> <button id="navbtn">Home</button></Link>
       <button  id="navbtn" onClick={Handlelogout}>Logout</button>
       </div>
       {/* <Link to="/AdminLogin"><Button variant="contained">for admin</Button></Link> */}

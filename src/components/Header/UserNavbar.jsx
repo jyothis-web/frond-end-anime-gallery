@@ -8,6 +8,16 @@ import Headroom from "react-headroom";
 import MobileDrawer from "./MobileDrawer/MobileDrawer";
 
 const UserNavbar = () => {
+  const authString = localStorage.getItem("auth");
+  const handleAvatarClick = () => {
+    if (authString) {
+      // Navigate to UserDashboard if authString exists
+      window.location.href = "/UserDashboard";
+    } else {
+      // Show error message if authString doesn't exist
+      alert("Error: No authentication data found.");
+    }
+  };
   return (
     <div>
       <Headroom>
@@ -26,7 +36,7 @@ const UserNavbar = () => {
               color: "white",
               cursor: "pointer",
             }}
-            to="/"
+            to="/UserHomepage"
           >
             <div >Home</div>
           </Link>
@@ -34,10 +44,19 @@ const UserNavbar = () => {
 
           <div className="hotline">HOTLINE: 1-900-9999</div>
           <div className="right-nav">
-            <Link to="/UserDashboard">
-              {" "}
-              <Avatar />
-            </Link>
+          {authString ? (
+              <Avatar onClick={handleAvatarClick} />
+            ) : (
+              <div
+                style={{
+                  color: "white",
+                  cursor: "pointer",
+                }}
+                onClick={handleAvatarClick}
+              >
+               authenticated error occured
+              </div>
+            )}
 
             {/* <Link
               style={{ textDecoration: "none", color: "white" }}

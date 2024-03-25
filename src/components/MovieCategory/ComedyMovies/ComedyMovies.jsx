@@ -100,7 +100,7 @@ const ComedyMovies = () => {
   };
 
   return (
-    <div style={{ width: "100%",overflowX: "hidden" }}>
+    <div style={{ width: "100%",overflowX: "hidden",maxHeight: "fit-content" }}>
       <div style={{paddingLeft:"30px",fontSize:"18px",fontWeight:"bold",}}>Comedy Movies</div>
       <div
         style={{
