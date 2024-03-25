@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { movies} from "../../Contex";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UserNavbar from "../../Header/UserNavbar";
 
 const UserDashboard = () => {
