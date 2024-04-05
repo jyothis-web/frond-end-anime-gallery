@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const PasswordReset = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const email = queryParams.get('email');
   const [password, setPassword] = useState("");
@@ -16,17 +17,18 @@ const PasswordReset = () => {
       toast.error("Passwords do not match");
       return;
     }
-
+console.log(confirmPassword);
     try {
       const response = await axios.post(
         `http://localhost:8080/auth/resetPassword`,
         {
           email: email,
-          newPassword: confirmPassword,
+          password: confirmPassword,
         }
       );
       console.log(response.data);
       toast.success(response.data.message);
+      navigate("/UserLogin")
     } catch (error) {
       console.error("Password reset failed:", error.message);
       toast.error(error.response.data.message || error.response.statusText || error.message);
@@ -38,17 +40,17 @@ const PasswordReset = () => {
       <h2>Password Reset</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Password:</label>
           <input
-            type="password"
+          placeholder="password"
+            type="text"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
         <div>
-          <label>Confirm Password:</label>
           <input
+          placeholder="confirm password"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
