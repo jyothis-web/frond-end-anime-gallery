@@ -1,23 +1,29 @@
-import React, { useContext, useEffect } from "react";
-import { movies } from "../../Contex";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getCategories } from "../../Redux/actions/actions";
 
 const CategoryButtons = () => {
-  const { categories, getCategories, loading } = useContext(movies);
+  const loading = useSelector((state) => state.categories.loading);
+  const dispatch = useDispatch();
+  const categories = useSelector(state => state.categories.data); // Map categories state from Redux store to component props
   useEffect(() => {
-    getCategories();
-  }, [getCategories]);
+    dispatch(getCategories()); // Dispatch getCategories action when component mounts
+  }, [dispatch]);
+  if (!Array.isArray(categories)) {
+    return <p>No categories found</p>;
+  }
 
   return (
     <div
       style={{
         display: "flex",
         justifyContent: "space-evenly",
-        paddingTop:"80px",
+        paddingTop: "80px",
         overflowY: "hidden",
-        paddingBottom:"20px",
-        gap:"20px",
-        flexWrap:"wrap"
+        paddingBottom: "20px",
+        gap: "20px",
+        flexWrap: "wrap",
       }}
     >
       {loading ? (

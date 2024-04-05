@@ -8,13 +8,13 @@ import { Link } from "react-router-dom";
 
 //import { Button } from "antd";
 //import axios from "axios";
-import Search from "../Products/filterProducts/Search";
+import Search from "../Products/filterMovies/Search";
 import logo from "../images/movie logo.png";
 import Headroom from "react-headroom";
 import MobileDrawer from "./MobileDrawer/MobileDrawer";
 
 const Navbar = ({ handleSearch }) => {
-  // const { cartitem, wishlist } = useContext(cart);
+
 
   return (
     <>

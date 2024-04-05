@@ -2,7 +2,7 @@ import "./navbar.css";
 import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import Search from "../Products/filterProducts/Search";
+import Search from "../Products/filterMovies/Search";
 import logo from "../images/movie logo.png";
 import Headroom from "react-headroom";
 import MobileDrawer from "./MobileDrawer/MobileDrawer";

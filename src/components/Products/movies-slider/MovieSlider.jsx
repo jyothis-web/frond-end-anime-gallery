@@ -1,23 +1,26 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, {  useEffect, useRef } from "react";
 import Slider from "react-slick";
 import "./MovieSlider.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { movies } from "../../Contex";
 import { Link } from "react-router-dom";
 import {  Typography } from "antd";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { IconButton } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories, getMovies } from "../../Redux/actions/actions";
 const MovieSlider = () => {
-  const { products, getMovies, getCategories, categories,} =
-    useContext(movies);
-    console.log(products);
-  const sliderRef = useRef(null);
+  const dispatch = useDispatch();
+  const categories = useSelector(state => state.categories); // Map categories state from Redux store to component props
+  const movies = useSelector(state => state.movies); // Map categories state from Redux store to component props
+
   useEffect(() => {
-    getMovies();
-    getCategories();
-    // eslint-disable-next-line
-  }, []);
+    dispatch(getCategories()); // Dispatch getCategories action when component mounts
+    dispatch(getMovies()); // Dispatch getCategories action when component mounts
+  }, [dispatch]);
+    // console.log(products);
+  const sliderRef = useRef(null);
+ 
   const settings = {
     autoplay: true,
     autoplaySpeed: 3000,
@@ -101,7 +104,7 @@ const MovieSlider = () => {
         }}
       >
         <Slider {...settings} ref={sliderRef} style={{ width: "100%" }}>
-          {products.map((movie) => (
+          {movies.map((movie) => (
             <div className="card" key={movie._id}>
               <div>
                 <Link to={`/ProductDescription/${movie._id}`}>

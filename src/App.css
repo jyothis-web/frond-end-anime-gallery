@@ -42,18 +42,21 @@
 .des-flex{
     display: flex;
     align-items: baseline;
-    padding-top: 30px;
+    padding-top: 0px;
     gap: 10px;
 }
 .trailer{
     margin-top: 30px;
-    width: 500px;
-    height: 300px;
+    /* width: 500px;
+    height: 300px; */
 }
 #movie-responsive{
     display: flex;
     gap: 40px;
     height: 100%;
+    padding-left: 15%;
+    flex-direction: column;
+    align-items:flex-start
 }
 @media (max-width: 568px){
     #movie-responsive{
@@ -63,7 +66,7 @@
     }
     .trailer{
         margin-top: 30px;
-        width: 300px;
-        height: 200px;
+        /* width: 300px;
+        height: 200px; */
     }
 }

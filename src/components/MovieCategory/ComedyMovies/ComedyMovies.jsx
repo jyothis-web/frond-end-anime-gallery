@@ -1,17 +1,18 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import axios from "axios"; // Import Axios
 import "../../Products/movies-slider/MovieSlider.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { movies } from "../../Contex";
 import { Link } from "react-router-dom";
 import { Typography } from "antd";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { IconButton } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { getCategories } from "../../Redux/actions/actions";
 
 const ComedyMovies = () => {
-  const { getCategories } = useContext(movies);
+  const dispatch = useDispatch();
   const sliderRef = useRef(null);
   const [moviesByCategory, setMoviesByCategory] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -34,7 +35,7 @@ const ComedyMovies = () => {
       }
     };
 
-    getCategories();
+   dispatch( getCategories());
     fetchMoviesByCategory();
     // eslint-disable-next-line
   }, []);

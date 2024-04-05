@@ -29,8 +29,8 @@ const Banner = () => {
     <div style={{ width: '100%',marginTop:"10px" }}>
          <Slider {...settings} style={{ width: '100%', }}>
       {images.map((image, index) => (
-        <div key={index} >
-          <img src={image}style={{width:"100%",height:"450px",objectFit:"cover",overflow:"hidden"}}alt={`slide-${index}`} />
+        <div key={index} className='banner-img' >
+          <img src={image}style={{width:"100%"}}alt={`slide-${index}`} />
         </div>
       ))}
     </Slider>

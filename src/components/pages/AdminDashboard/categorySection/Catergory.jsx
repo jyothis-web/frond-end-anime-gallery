@@ -1,6 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { movies } from "../../../Contex";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Paper,
@@ -16,12 +15,14 @@ import {
 import toast from "react-hot-toast";
 import EditAlertDialog from "./EditCategoryDailog";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategories } from "../../../Redux/actions/actions";
 
 const Catergory = () => {
   //const [categories, setCategories] = useState([]);
   const [name, setName] = useState([]);
-  const [category, setCategory] = useState([]);
-  const { categories, getCategories } = useContext(movies);
+  // const [category, setCategory] = useState([]);
+
   // console.log(localStorage.getItem("auth"));
   const authString = localStorage.getItem("auth");
   // Parse the JSON string to an object
@@ -29,12 +30,12 @@ const Catergory = () => {
   // Access the token property
   const token = auth.token;
 
+  const dispatch = useDispatch();
+  const categories = useSelector((state) => state.categories.data); // Map categories state from Redux store to component props
   useEffect(() => {
-    getCategories();
-    getallCategories();
-    // eslint-disable-next-line
-  }, []);
-  console.log(category);
+    dispatch(getCategories()); // Dispatch getCategories action when component mounts
+  }, [dispatch]);
+
   //for create new category
   const handlenewSubmit = async (e) => {
     e.preventDefault();
@@ -81,30 +82,6 @@ const Catergory = () => {
       toast.error("Error deleting category");
     }
   };
-  //for get all categories
-  const getallCategories = async () => {
-    try {
-      const authString = localStorage.getItem("auth");
-      const auth = JSON.parse(authString);
-      const token = auth.token;
-      console.log("token", token);
-
-      const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/admin/get-category`
-        // {
-        //   headers: {
-        //     Authorization: `${token}`,
-        //   },
-        // }
-      );
-
-      if (response.data.success) {
-        setCategory(response.data.categories);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
     <div style={{ display: "flex" }}>
@@ -115,8 +92,8 @@ const Catergory = () => {
           <Link to="/Catergory">
             <Button variant="contained">create category</Button>
           </Link>
-          <Link to="/Product">
-            <Button variant="contained">create products</Button>
+          <Link to="/movies">
+            <Button variant="contained">view movies</Button>
           </Link>
           <Link to="/AdminDashboard">
             <Button variant="contained">Dashborad</Button>

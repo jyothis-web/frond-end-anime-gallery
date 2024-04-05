@@ -1,16 +1,14 @@
 import { Button, Card } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import "../UserLogin/UserLogin.css";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-import { movies } from "../../Contex";
 
 const UserLogin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { auth, setAuth } = useContext(movies);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,11 +20,11 @@ const UserLogin = () => {
       });
       console.log(response.data);
       toast.success(response.data.message);
-      setAuth({
-        ...auth,
-        user: response.data.user,
-        token: response.data.token,
-      });
+      // setAuth({
+      //   ...auth,
+      //   user: response.data.user,
+      //   token: response.data.token,
+      // });
       localStorage.setItem("auth", JSON.stringify(response.data));
       navigate("/UserHomepage");
       //  window.location.reload();
@@ -85,7 +83,7 @@ const UserLogin = () => {
             Log in
           </button>
 
-          <Link to="/PasswordResetPage">
+          <Link to="/ForgotPassword">
             {" "}
             <button className="btn"> forgot password?</button>
           </Link>
@@ -97,6 +95,9 @@ const UserLogin = () => {
               <Button sx={{ textTransform: "none" }}>Sign in</Button>
             </Link>
           </div>
+          <Link to="/AdminLogin">
+              <Button sx={{ textTransform: "none" }}>Admin Login</Button>
+            </Link>
         </Card>
       </form>
     </div>

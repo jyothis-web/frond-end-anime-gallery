@@ -1,5 +1,5 @@
 import React from 'react'
-import UserProducts from '../Products/UserProducts'
+import UserProducts from './UserMovies'
 import Navbar from '../Header/Navbar';
 import Banner from '../Banner/Banner';
 import Footer from '../Footer/Footer';

@@ -1,13 +1,15 @@
 import { Rating } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import ReactPlayer from "react-player";
 import { useParams } from "react-router-dom";
 import UserNavbar from "../Header/UserNavbar";
 import Navbar from "../Header/Navbar";
+import { Suspense, lazy } from "react";
+
+const LazyReactPlayer = lazy(() => import("react-player"));
 
 const MovieDescription = () => {
-  const { id } = useParams(); // Use 'id' instead of 'product._id'
+  const { id } = useParams();
   const [productdata, setProductdata] = useState({});
 
   useEffect(() => {
@@ -32,11 +34,11 @@ const MovieDescription = () => {
   return (
     <div className="backgroundimg">
       {authString ? <UserNavbar /> : <Navbar />}
-      <div  id="movie-responsive">
+      <div id="movie-responsive">
         <div>
-          <h3 style={{ margin: "0px", paddingTop: "40px" }}>Movie name</h3>
+          <h3 style={{ margin: "0px", paddingTop: "40px" }}>Movie Name</h3>
           <p>{productdata.name}</p>
-          {productdata.image && productdata.image.length > 0 && (
+          {/* {productdata.image && productdata.image.length > 0 && (
             <img
               src={`${process.env.REACT_APP_BASE_URL}/${productdata.image[0].imagePath}`}
               alt={`${productdata.name}-0`}
@@ -45,15 +47,16 @@ const MovieDescription = () => {
                 objectFit: "cover",
               }}
             />
-          )}
+          )} */}
+
           {productdata.video && (
             <video
               controls
               width="300"
               height="200"
-              style={{
-                marginTop: "10px",
-              }}
+              // style={{
+              //   marginTop: "10px",
+              // }}
             >
               <source
                 src={`${process.env.REACT_APP_BASE_URL}/${productdata.video.videoPath}`}
@@ -64,13 +67,15 @@ const MovieDescription = () => {
           )}
         </div>
         <div>
-          <div className="trailer">
-            <ReactPlayer
-              url={productdata.trailer}
-              controls
-              width="100%"
-              height="100%"
-            />
+          <div>
+            <Suspense fallback={<div>Loading...</div>}>
+              <LazyReactPlayer
+                url={productdata.trailer}
+                controls
+                width="100%"
+                height="300px"
+              />
+            </Suspense>
           </div>
           <div className="des-flex">
             <h3 style={{ margin: "0px" }}>Movie rating :</h3>
@@ -102,6 +107,75 @@ const MovieDescription = () => {
           <div className="des-flex">
             <h3 style={{ margin: "0px" }}>Movie Generes :</h3>
             <p>{productdata.movieGenres}</p>
+          </div>
+          <div>
+            {productdata.actorImage && productdata.actorImage.length > 0 && (
+              <img
+                src={`${process.env.REACT_APP_BASE_URL}/${productdata.actorImage[5].imagePath}`}
+                alt={`${productdata.name}-0`}
+                style={{
+                  width: "100px",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                }}
+              />
+            )}
+            {productdata.Actorname}
+            {productdata.actorImage && productdata.actorImage.length > 0 && (
+              <img
+                src={`${process.env.REACT_APP_BASE_URL}/${productdata.actorImage[4].imagePath}`}
+                alt={`${productdata.name}-0`}
+                style={{
+                  width: "100px",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                }}
+              />
+            )}
+            {productdata.actorImage && productdata.actorImage.length > 0 && (
+              <img
+                src={`${process.env.REACT_APP_BASE_URL}/${productdata.actorImage[3].imagePath}`}
+                alt={`${productdata.name}-0`}
+                style={{
+                  width: "100px",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                }}
+              />
+            )}
+            {productdata.actorImage && productdata.actorImage.length > 0 && (
+              <img
+                src={`${process.env.REACT_APP_BASE_URL}/${productdata.actorImage[2].imagePath}`}
+                alt={`${productdata.name}-0`}
+                style={{
+                  width: "100px",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                }}
+              />
+            )}
+            {productdata.actorImage && productdata.actorImage.length > 0 && (
+              <img
+                src={`${process.env.REACT_APP_BASE_URL}/${productdata.actorImage[1].imagePath}`}
+                alt={`${productdata.name}-0`}
+                style={{
+                  width: "100px",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                }}
+              />
+            )}
+            {productdata.actorImage && productdata.actorImage.length > 0 && (
+              <img
+                src={`${process.env.REACT_APP_BASE_URL}/${productdata.actorImage[0].imagePath}`}
+                alt={`${productdata.name}-0`}
+                style={{
+                  width: "100px",
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                }}
+              />
+            )}
           </div>
         </div>
       </div>

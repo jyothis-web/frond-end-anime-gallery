@@ -1,17 +1,18 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import axios from "axios"; // Import Axios
 import "../../Products/movies-slider/MovieSlider.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { movies } from "../../Contex";
 import { Link } from "react-router-dom";
 import { Typography } from "antd";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { IconButton } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { getCategories } from "../../Redux/actions/actions";
 
 const NewMovies = () => {
-  const { getCategories } = useContext(movies);
+  const dispatch = useDispatch();
   const sliderRef = useRef(null);
   const [moviesByCategory, setMoviesByCategory] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,7 +21,7 @@ const NewMovies = () => {
   useEffect(() => {
     const fetchMoviesByCategory = async () => {
       try {
-        const categoryId = "65dc27bdaff24c3875e403f1"; // Replace with the actual category ID
+        const categoryId = "65dc27bdaff24c3875e403f1"; 
         const response = await axios.get(
           `${process.env.REACT_APP_BASE_URL}/admin/get-movies-by-category/${categoryId}`
         );
@@ -34,10 +35,9 @@ const NewMovies = () => {
       }
     };
 
-    getCategories();
+    dispatch( getCategories());
     fetchMoviesByCategory();
-    // eslint-disable-next-line
-  }, []);
+  }, [dispatch]);
 
   const settings = {
     autoplay: true,
@@ -105,7 +105,7 @@ const NewMovies = () => {
     >
       <div
         className="movie distance"
-        style={{ fontSize: "18px", fontWeight: "bold" }}
+        style={{paddingLeft:"30px",fontSize:"18px",fontWeight:"bold",}}
       >
         Latest Movies
       </div>
